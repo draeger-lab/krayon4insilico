@@ -1,5 +1,6 @@
 package de.krayon4insilico.containers;
 
+import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -18,6 +19,9 @@ public class Krayon4sbgnWrapper {
 		IsSetup=true;
 	}
 	
+	public static JSplitPane getsidePane() {
+		return Krayon.getSidePane();
+	}
 	public static SbgnGraphComponent getGraphComponent() {
 		return Krayon.getGraphComponent();
 	}
@@ -30,9 +34,7 @@ public class Krayon4sbgnWrapper {
 		
 		return Krayon.createToolBar();
 	}
-	
 
-	
 	public static boolean isSetup() {
 		return IsSetup;
 	}

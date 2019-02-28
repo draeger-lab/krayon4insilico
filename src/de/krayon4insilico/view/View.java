@@ -12,9 +12,10 @@ import de.krayon4insilico.containers.Krayon4sbgnWrapper;
 public class View extends Application {
 	
     private SwingNode swingNodeGraphComponent = new SwingNode();
-    private SwingNode swingNodeRight = new SwingNode();
     private SwingNode swingNodeToolBar = new SwingNode();
-    private SwingNode swingNodeRight2 = new SwingNode();
+    private SwingNode swingNodeRight = new SwingNode();
+//    private SwingNode swingNodeRight2 = new SwingNode();
+//    private SwingNode swingNodeRigh3 = new SwingNode();
 
     @Override
     public void start (Stage stage) {	
@@ -22,8 +23,9 @@ public class View extends Application {
         Krayon4sbgnWrapper.setup();
         swingNodeGraphComponent.setContent(Krayon4sbgnWrapper.getGraphComponent());
 		swingNodeToolBar.setContent(Krayon4sbgnWrapper.getToolBar());
-		swingNodeRight.setContent(Krayon4sbgnWrapper.getPaletteContainer());
-		swingNodeRight2.setContent(Krayon4sbgnWrapper.getTableAndBrickPane());
+//		swingNodeRight.setContent(Krayon4sbgnWrapper.getPaletteContainer());
+//		swingNodeRight2.setContent(Krayon4sbgnWrapper.getTableAndBrickPane());
+		swingNodeRight.setContent(Krayon4sbgnWrapper.getsidePane());
         
 //		SbgnGraphComponent graphComponent = new SbgnGraphComponent();
 //		graphComponent.setInputMode(graphComponent.createEditorMode());
@@ -41,14 +43,15 @@ public class View extends Application {
 //		}
 		
 	    BorderPane mainPane = new BorderPane();
-        GridPane rightPane = new GridPane();
-        
-        rightPane.add(swingNodeRight, 0, 0);
-        rightPane.add(swingNodeRight2, 0, 1);
+	    
+//        GridPane rightPane = new GridPane();
+//        
+//        rightPane.add(swingNodeRight, 0, 0);
+//        rightPane.add(swingNodeRight2, 0, 1);
         
         mainPane.setTop(swingNodeToolBar);
         mainPane.setCenter(swingNodeGraphComponent);
-        mainPane.setRight(rightPane);
+        mainPane.setRight(swingNodeRight);
         
         stage.setTitle("KrayonTestGui");
         stage.setScene(new Scene(mainPane, 500, 700));
