@@ -5,7 +5,7 @@ Said plugin should offer the user the full functionality of the drawing tool [kr
 
 ## Current state / working time
 
-The total amount of time spent working on this project so far is 90h (28.01.2019)
+The total amount of time spent working on this project so far is 118h (28.02.2019)
 
 In the last two months several problems with setting up insilico and and krayon4sbgn had to be fixed. Some of them like compiling krayon4sgbn using the eclipse IDE and building insilico using Maven under windows still haven't been fixed. A meeting with [Roland Wiese](https://github.com/wiese42) brought up the current approach that is editing krayon4sbgn using IntelliJ and developing the plugin importing classes from the krayon4sbgn.jar file in the build path.
 Even though the beginning of coding was delayed by unforeseen problems there have already been learn-effects regarding setting up the java and kotlin compiler and build path and working with eclipse and IntelliJ as well as working with software with commercial licence and obfuscation.
