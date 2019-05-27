@@ -1,2 +1,58 @@
-/rescources/
-/bin/
+# Project
+target/
+*.lock
+*.bin
+.gradle/
+
+# Mac
+.DS_Store
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+
+# idea files
+.idea
+*.iml
+
+# workspace
+workspace/
+
+# eclipse files
+.settings/
+#.project
+.classpath
+
+#all files associated with Insilico
+devel/
+releng/
+scripts/*
+/pom.xml
+#tests should later be implemented
+tests/
+bundles/*
+features/*
+!bundles/org.insilico.krayon4insilico
+!features/org.insilico.krayon4insilico.feature
+!scripts/config
+
+
