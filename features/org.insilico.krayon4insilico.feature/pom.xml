@@ -9,7 +9,7 @@
 		<relativePath>../</relativePath>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>org.insilico.sbmlsheets.feature</artifactId>
+	<artifactId>org.insilico.krayon4insilico.feature</artifactId>
 	<packaging>eclipse-feature</packaging>
-	<name>SBMLsheets Feature</name>
+	<name>Krayon4insilico Feature</name>
 </project>
