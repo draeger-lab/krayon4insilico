@@ -12,10 +12,12 @@ import org.eclipse.e4.core.contexts.IContextFunction;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.IInjector;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
+import org.insilico.jsbml.core.SBMLUtils;
 import org.osgi.service.component.annotations.Component;
 import org.sbgn.*;
 import krayon.editor.sbgn.io.SbgnReader;
-
+import org.sbml.jsbml.SBMLDocument;
+import org.sbml.jsbml.JSBML;
 
 
 /**

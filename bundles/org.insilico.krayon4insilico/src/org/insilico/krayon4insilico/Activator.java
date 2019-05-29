@@ -1,18 +1,18 @@
 package org.insilico.krayon4insilico;
 
-import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.osgi.framework.BundleActivator;
+import org.insilico.ui.windows.*;
 import org.insilico.krayon4insilico.view.View;
 import org.osgi.framework.BundleContext;
-
 import javafx.application.Application;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIPlugin {
+public class Activator implements BundleActivator {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "jk"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.insilico.kayon4insilico"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
@@ -25,7 +25,6 @@ public class Activator extends AbstractUIPlugin {
 
 	@Override
 	public void start(BundleContext context) throws Exception {
-		super.start(context);
 		plugin = this;
 		System.out.println("hello");
 		Application.launch(View.class);	
@@ -34,7 +33,6 @@ public class Activator extends AbstractUIPlugin {
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
-		super.stop(context);
 	}
 
 	/**

@@ -3,8 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Krayon4insilico
 Bundle-SymbolicName: org.insilico.kayon4insilico
 Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: Test.jar,
- anton/Desktop/krayon4sbgn/out/artifacts/krayon4sbgn_jar/krayon4sbgn.jar
+Bundle-ClassPath: res/krayon4sbgn.jar
 Export-Package: org.insilico.krayon4insilico,
  org.insilico.krayon4insilico.containers,
  org.insilico.krayon4insilico.view
@@ -14,9 +13,11 @@ Require-Bundle: org.eclipse.osgi;bundle-version="3.11.2",
  org.eclipse.e4.core.di;bundle-version="1.6.1",
  org.eclipse.e4.ui.model.workbench;bundle-version="1.2.0",
  org.insilico.core;bundle-version="1.0.0",
- org.insilico.ui;bundle-version="1.0.0"
+ org.insilico.ui;bundle-version="1.0.0",
+ org.sbml.jsbml.core;bundle-version="1.3.1",
+ org.eclipse.fx.code.editor;bundle-version="3.0.0"
 Bundle-Activator: org.insilico.krayon4insilico.Activator
-Bundle-ActivationPolicy: lazy
 Service-Component: component.xml,
  OSGI-INF/services/component.xml,
  OSGI-INF/org.insilico.krayon4insilico.services.SbgnDocumentLoader.xml
+Import-Package: org.insilico.jsbml.core
