@@ -17,7 +17,7 @@
    </license>
 
    <plugin
-         id="org.insilico.kayon4insilico"
+         id="org.insilico.krayon4insilico"
          download-size="0"
          install-size="0"
          version="0.0.0"/>
