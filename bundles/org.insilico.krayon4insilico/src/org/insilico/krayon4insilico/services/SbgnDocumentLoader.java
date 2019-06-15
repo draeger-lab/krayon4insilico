@@ -2,6 +2,7 @@ package org.insilico.krayon4insilico.services;
 
 import static org.eclipse.fx.code.editor.Constants.DOCUMENT_URL;
 
+import java.io.FileInputStream;
 import java.net.URI;
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -16,15 +17,16 @@ import org.insilico.jsbml.core.SBMLUtils;
 import org.osgi.service.component.annotations.Component;
 import org.sbgn.*;
 import krayon.editor.sbgn.io.SbgnReader;
+import krayon.editor.sbgn.ui.SbgnGraphComponent;
 import org.sbml.jsbml.SBMLDocument;
 import org.sbml.jsbml.JSBML;
 
 
 /**
- * The {@link SBMLDocumentLoader} provides a {@link SBMLDocument} via dependency injection if the
- * current document is a sbml file.
+ * The {@link SBMLDocumentLoader} provides a {@link GraphComponent} via dependency injection if the
+ * current document is a sbgn file.
  * 
- * In oder to use this {@link IContextFunction} the context must store the location of a sbml file
+ * In oder to use this {@link IContextFunction} the context must store the location of a sbgn file
  * with the key {@link org.eclipse.fx.code.editor.Constants#DOCUMENT_URL}. This context function
  * will only compute values for the contextKey
  * {@link org.insilico.sbmlsheets.core.Constants#KEY_SBML_DOCUMENT}
@@ -35,9 +37,10 @@ import org.sbml.jsbml.JSBML;
 @SuppressWarnings("restriction")
 @Component(service = IContextFunction.class,
         property = {"service.context.key=org.sbml.jsbml.SBMLDocument"})
+
 public class SbgnDocumentLoader extends ContextFunction {
     // Stores weak reference to already loaded documents.
-    Map<String, SBMLDocument> cache = new WeakHashMap<>();
+    Map<String, SbgnGraphComponent> cache = new WeakHashMap<>();
 
     @Override
     public Object compute(IEclipseContext context, String contextKey) {
@@ -59,31 +62,26 @@ public class SbgnDocumentLoader extends ContextFunction {
             String urlString = (String) urlVal;
             urlString = urlString.replace("%20", " ");
             // Check cache
-            SBMLDocument doc = cache.get(urlString);
+            SbgnGraphComponent graphComponent = cache.get(urlString);
 
-            if (doc == null) {
-                // Check if the document is a sbml file.
-                if (!SBMLUtils.isSBMLFile(urlString)) {
-                    System.out.println("Not a sbml file");
-                    return IInjector.NOT_A_VALUE;
-                }
-
+            if (graphComponent == null) {
                 // Load if needed
                 try {
-                    URI url = URIUtil.fromString(urlString);
-                    doc = JSBML.readSBMLFromFile(url.getPath());
-                    // doc = SBMLReader.read(new File(url));
-                    cache.put(urlString, doc);
+                    SbgnReader reader = new SbgnReader();
+                    FileInputStream in = new FileInputStream("camkii-signaling-pathway.sbgn");
+        			reader.read(in,  graphComponent.getGraph(), graphComponent);
+        			graphComponent.updateContentRect();
+                    cache.put(urlString, graphComponent);
                 }
                 catch (Exception e) {
-                    // Not a sbml file?
+                    // Not a sbgn file?
                     e.printStackTrace();
                     System.out.println("Reading failed");
                     return IInjector.NOT_A_VALUE;
                 }
             }
 
-            return doc;
+            return graphComponent;
         }
 
         System.out.println("No doc selected");
