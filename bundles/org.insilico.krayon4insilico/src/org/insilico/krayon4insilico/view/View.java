@@ -7,35 +7,70 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import krayon.editor.sbgn.KrayonForSbgn;
 
+import java.io.File;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.inject.Inject;
+
+import org.eclipse.e4.core.contexts.IEclipseContext;
+import org.eclipse.e4.ui.model.application.ui.basic.MTrimmedWindow;
+
 import javax.swing.JFrame;
 import javax.swing.JSplitPane;
 
 import org.insilico.krayon4insilico.containers.Krayon4SbgnWrapper;
 
-public class View extends Application {
+import com.yworks.yfiles.view.GraphComponent;
+
+public class View {
+	/**
+	 * The {@link GraphComponent} injected after {@link SbgnDocumentLoader} loaded a sbgn file.
+	 */
+	@Inject
+	GraphComponent graphComponent;
 	
+	/**
+	 * The {@link MWindow} is a Model Window of the Insilico application. It is injected at instantiation and available
+	 * inside the object.
+	 */
+	@Inject 
+    MTrimmedWindow mWindow;
+	
+	/**
+	 * SwingNodes containing components of the Krayon4sbgn GUI
+	 */
     private SwingNode swingNodeGraphComponent = new SwingNode();
     private SwingNode swingNodeToolBar = new SwingNode();
     private SwingNode swingNodeRight = new SwingNode();
-
-    @Override
-    public void start (Stage stage) {	
+    
+    /**
+	 * Called after injection of {@link #project}. Generates the GUI.
+	 * @param parent The {@link BorderPane} provided by Insilico.
+	 */
+	@PostConstruct
+	private void init(BorderPane parent) {
+		parent = makeView(parent);		
+	}
+	
+	/**
+	 * Builds the Krayon4sbgn View of the GraphComponent in {@link #project}.
+	 * @param parent The parent {@link BorderPane} {@link Node} provided by Insilico
+	 * @return The View representing {@link #project}.
+	 */
+    private BorderPane makeView (BorderPane parent) {	
         Krayon4SbgnWrapper.setup();
+//        Krayon4SbgnWrapper.setGraphComponent(graphComponent);
           swingNodeGraphComponent.setContent(Krayon4SbgnWrapper.getEditorContainer());
 		  swingNodeToolBar.setContent(Krayon4SbgnWrapper.getToolBar());
 		  swingNodeRight.setContent(Krayon4SbgnWrapper.getSidePane());
 
-	    BorderPane mainPane = new BorderPane();
-          mainPane.setTop(swingNodeToolBar);
-          mainPane.setCenter(swingNodeGraphComponent);
-          mainPane.setRight(swingNodeRight);
-        
-        stage.setTitle("KrayonTestGui");
-        stage.setScene(new Scene(mainPane, 500, 700));
-        stage.show();
+          parent.setTop(swingNodeToolBar);
+          parent.setCenter(swingNodeGraphComponent);
+          parent.setRight(swingNodeRight);
 	    
 /*
- *  Drag and drop works when a swing frame is composed.
+ *  Drag and drop works only if a swing frame is composed.
  */
 //		JSplitPane tableAndBrickPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, Krayon4sbgnWrapper.getEditorContainer(), Krayon4sbgnWrapper.getSidePane());
 //	    JSplitPane swingPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT, Krayon4sbgnWrapper.getToolBar(),tableAndBrickPane);
@@ -43,6 +78,7 @@ public class View extends Application {
 //	    JFrame frame = new JFrame();
 //        frame.add(swingPane);
 //        frame.setVisible(true);
-//	    
+//	     
+          return parent;
         }
 }
