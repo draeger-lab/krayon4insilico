@@ -21,14 +21,14 @@ import javax.swing.JSplitPane;
 
 import org.insilico.krayon4insilico.containers.Krayon4SbgnWrapper;
 
-import com.yworks.yfiles.view.GraphComponent;
+import krayon.editor.sbgn.ui.SbgnGraphComponent;
 
 public class View {
 	/**
 	 * The {@link GraphComponent} injected after {@link SbgnDocumentLoader} loaded a sbgn file.
 	 */
 	@Inject
-	GraphComponent graphComponent;
+	SbgnGraphComponent graphComponent;
 	
 	/**
 	 * The {@link MWindow} is a Model Window of the Insilico application. It is injected at instantiation and available
