@@ -3,7 +3,9 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Krayon4insilico
 Bundle-SymbolicName: org.insilico.krayon4insilico
 Bundle-Version: 1.0.0.qualifier
-Bundle-ClassPath: res/krayon4sbgn.jar
+Bundle-ClassPath: res/krayon4sbgn.jar,
+ src/,
+ .
 Export-Package: org.insilico.krayon4insilico,
  org.insilico.krayon4insilico.containers,
  org.insilico.krayon4insilico.view
