@@ -25,17 +25,15 @@ import krayon.editor.sbgn.ui.SbgnGraphComponent;
  * current document is a sbgn file.
  * 
  * In oder to use this {@link IContextFunction} the context must store the location of a sbgn file
- * with the key {@link org.eclipse.fx.code.editor.Constants#DOCUMENT_URL}. This context function
- * will only compute values for the contextKey
- * {@link org.insilico.sbmlsheets.core.Constants#KEY_SBML_DOCUMENT}
+ * with the key {@link org.eclipse.fx.code.editor.Constants#DOCUMENT_URL}.
  * 
- * @author roman
- * @author Anton
+ * @authors roman, anton
+ * 
  *
  */
 @SuppressWarnings("restriction")
 @Component(service = IContextFunction.class,
-        property = {"service.context.key=org.sbml.jsbml.SBMLDocument"})
+        property = {"service.context.key=krayon.editor.sbgn.ui.SbgnGraphComponent"})
 
 public class SbgnDocumentLoader extends ContextFunction {
     // Stores weak reference to already loaded documents.
@@ -70,10 +68,11 @@ public class SbgnDocumentLoader extends ContextFunction {
             		graphComponent.setInputMode(graphComponent.createEditorMode());
             		graphComponent.setPreferredSize(new Dimension(600, 600));
             		
-            		SbgnReader reader = new SbgnReader();
-            		FileInputStream in;
+            		
             		try {
-            			in = new FileInputStream(urlString);
+            			SbgnReader reader = new SbgnReader();
+                		FileInputStream in;
+            			in = new FileInputStream(DOCUMENT_URL);
             			reader.read(in,  graphComponent.getGraph(), graphComponent);
             			graphComponent.updateContentRect();
             		} catch (FileNotFoundException e) {
