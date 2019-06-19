@@ -2,7 +2,9 @@ package org.insilico.krayon4insilico.services;
 
 import static org.eclipse.fx.code.editor.Constants.DOCUMENT_URL;
 
+import java.awt.Dimension;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.URI;
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -13,17 +15,13 @@ import org.eclipse.e4.core.contexts.IContextFunction;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.IInjector;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
-import org.insilico.jsbml.core.SBMLUtils;
 import org.osgi.service.component.annotations.Component;
-import org.sbgn.*;
 import krayon.editor.sbgn.io.SbgnReader;
 import krayon.editor.sbgn.ui.SbgnGraphComponent;
-import org.sbml.jsbml.SBMLDocument;
-import org.sbml.jsbml.JSBML;
 
 
 /**
- * The {@link SBMLDocumentLoader} provides a {@link GraphComponent} via dependency injection if the
+ * The {@link SbgnDocumentLoader} provides a {@link GraphComponent} via dependency injection if the
  * current document is a sbgn file.
  * 
  * In oder to use this {@link IContextFunction} the context must store the location of a sbgn file
@@ -32,6 +30,7 @@ import org.sbml.jsbml.JSBML;
  * {@link org.insilico.sbmlsheets.core.Constants#KEY_SBML_DOCUMENT}
  * 
  * @author roman
+ * @author Anton
  *
  */
 @SuppressWarnings("restriction")
@@ -67,10 +66,20 @@ public class SbgnDocumentLoader extends ContextFunction {
             if (graphComponent == null) {
                 // Load if needed
                 try {
-                    SbgnReader reader = new SbgnReader();
-                    FileInputStream in = new FileInputStream("camkii-signaling-pathway.sbgn");
-        			reader.read(in,  graphComponent.getGraph(), graphComponent);
-        			graphComponent.updateContentRect();
+                	graphComponent = new SbgnGraphComponent();
+            		graphComponent.setInputMode(graphComponent.createEditorMode());
+            		graphComponent.setPreferredSize(new Dimension(600, 600));
+            		
+            		SbgnReader reader = new SbgnReader();
+            		FileInputStream in;
+            		try {
+            			in = new FileInputStream(urlString);
+            			reader.read(in,  graphComponent.getGraph(), graphComponent);
+            			graphComponent.updateContentRect();
+            		} catch (FileNotFoundException e) {
+            			e.printStackTrace();
+            			return IInjector.NOT_A_VALUE;
+            		}
                     cache.put(urlString, graphComponent);
                 }
                 catch (Exception e) {

@@ -1,24 +1,32 @@
 package org.insilico.krayon4insilico.containers;
 
-import javax.swing.JFrame;
-import javax.swing.JMenu;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JToolBar;
 
-
-
 import krayon.editor.sbgn.KrayonForSbgn;
 import krayon.editor.sbgn.ui.*;
 
+/**
+ * The {@link Krayon4SbgnWrapper} gives access to swing components 
+ * and some methods from the {@link KrayonForSbgn} singleton main class.
+ * 
+ * @author Anton
+ *
+ */
 public class Krayon4SbgnWrapper {
-	private static boolean IsSetup=false;
+	
 	private static KrayonForSbgn Krayon = KrayonForSbgn.INSTANCE;
+	private static boolean IsSetup=false;
+	
 	
 	public static void setup() {
 		Krayon.setup();
 		IsSetup=true;
+	}
+	public static boolean isSetup() {
+		return IsSetup;
 	}
 	
 	public static JSplitPane getSidePane() {
@@ -38,12 +46,7 @@ public class Krayon4SbgnWrapper {
 	}
 	
 	public static JToolBar getToolBar() {
-		
 		return Krayon.createToolBar();
-	}
-
-	public static boolean isSetup() {
-		return IsSetup;
 	}
 	
 	public static JSplitPane getTableAndBrickPane() {
@@ -57,5 +60,7 @@ public class Krayon4SbgnWrapper {
 	public static JScrollPane getPaletteContainer() {
 		return Krayon.getPaletteContainer();
 	}
-
+	public static void addGraphComponent(SbgnGraphComponent graphComponent) {
+		Krayon.configureGraphComponent(graphComponent);
+	}
 }

@@ -60,14 +60,15 @@ public class View {
 	 */
     private BorderPane makeView (BorderPane parent) {	
         Krayon4SbgnWrapper.setup();
-//        Krayon4SbgnWrapper.setGraphComponent(graphComponent);
-          swingNodeGraphComponent.setContent(Krayon4SbgnWrapper.getEditorContainer());
-		  swingNodeToolBar.setContent(Krayon4SbgnWrapper.getToolBar());
-		  swingNodeRight.setContent(Krayon4SbgnWrapper.getSidePane());
+        Krayon4SbgnWrapper.addGraphComponent(graphComponent);
+        
+        swingNodeGraphComponent.setContent(Krayon4SbgnWrapper.getEditorContainer());
+		swingNodeToolBar.setContent(Krayon4SbgnWrapper.getToolBar());
+		swingNodeRight.setContent(Krayon4SbgnWrapper.getSidePane());
 
-          parent.setTop(swingNodeToolBar);
-          parent.setCenter(swingNodeGraphComponent);
-          parent.setRight(swingNodeRight);
+        parent.setTop(swingNodeToolBar);
+        parent.setCenter(swingNodeGraphComponent);
+        parent.setRight(swingNodeRight);
 	    
 /*
  *  Drag and drop works only if a swing frame is composed.
