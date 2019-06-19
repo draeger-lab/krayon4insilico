@@ -4,18 +4,17 @@ import static org.eclipse.fx.code.editor.Constants.DOCUMENT_URL;
 
 import java.awt.Dimension;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.net.URI;
 import java.util.Map;
 import java.util.WeakHashMap;
 
-import org.eclipse.core.runtime.URIUtil;
 import org.eclipse.e4.core.contexts.ContextFunction;
 import org.eclipse.e4.core.contexts.IContextFunction;
 import org.eclipse.e4.core.contexts.IEclipseContext;
 import org.eclipse.e4.core.di.IInjector;
 import org.eclipse.e4.ui.model.application.ui.basic.MPart;
+
 import org.osgi.service.component.annotations.Component;
+
 import krayon.editor.sbgn.io.SbgnReader;
 import krayon.editor.sbgn.ui.SbgnGraphComponent;
 
@@ -42,7 +41,6 @@ public class SbgnDocumentLoader extends ContextFunction {
     @Override
     public Object compute(IEclipseContext context, String contextKey) {
         System.out.println("Compute...");
-        System.out.println("Hallo");
         Object urlVal = context.get(DOCUMENT_URL);
 
         if (urlVal == null) {
@@ -67,18 +65,12 @@ public class SbgnDocumentLoader extends ContextFunction {
                 	graphComponent = new SbgnGraphComponent();
             		graphComponent.setInputMode(graphComponent.createEditorMode());
             		graphComponent.setPreferredSize(new Dimension(600, 600));
-            		
-            		
-            		try {
-            			SbgnReader reader = new SbgnReader();
-                		FileInputStream in;
-            			in = new FileInputStream(DOCUMENT_URL);
-            			reader.read(in,  graphComponent.getGraph(), graphComponent);
-            			graphComponent.updateContentRect();
-            		} catch (FileNotFoundException e) {
-            			e.printStackTrace();
-            			return IInjector.NOT_A_VALUE;
-            		}
+            		SbgnReader reader = new SbgnReader();
+                	FileInputStream in;
+            		in = new FileInputStream(DOCUMENT_URL);
+            		System.out.println(DOCUMENT_URL);
+            		reader.read(in,  graphComponent.getGraph(), graphComponent);
+            		graphComponent.updateContentRect();
                     cache.put(urlString, graphComponent);
                 }
                 catch (Exception e) {
@@ -88,7 +80,6 @@ public class SbgnDocumentLoader extends ContextFunction {
                     return IInjector.NOT_A_VALUE;
                 }
             }
-
             return graphComponent;
         }
 

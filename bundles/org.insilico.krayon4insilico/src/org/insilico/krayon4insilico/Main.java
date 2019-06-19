@@ -1,15 +1,15 @@
 package org.insilico.krayon4insilico;
 
-import org.insilico.krayon4insilico.view.View;
-
-import javafx.application.Application;
+/**
+ * Main method of executable jar providing regular Krayon functionality
+ * @author Anton
+ *
+ */
 import krayon.editor.sbgn.KrayonForSbgn;
 
 public class Main {
 	public static void main (String... args){
 		System.out.println("hello");
-		//Application.launch(View.class, args);
 		KrayonForSbgn.main(args);	
 	}
-
 }
