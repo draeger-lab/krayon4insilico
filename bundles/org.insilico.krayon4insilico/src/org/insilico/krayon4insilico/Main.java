@@ -1,7 +1,7 @@
 package org.insilico.krayon4insilico;
 
 /**
- * Main method of executable jar providing regular Krayon functionality
+ * Main method providing regular Krayon functionality
  * @author Anton
  *
  */

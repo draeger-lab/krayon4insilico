@@ -1,4 +1,4 @@
-package org.insilico.krayon4insilico.services;
+package org.insilico.krayon4insilico.services.provider;
 
 import org.eclipse.fx.code.editor.fx.e4.EditorClassURLProvider;
 import org.insilico.krayon4insilico.view.View;

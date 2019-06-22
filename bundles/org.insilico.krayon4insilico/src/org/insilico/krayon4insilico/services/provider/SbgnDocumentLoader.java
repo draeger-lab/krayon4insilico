@@ -1,4 +1,4 @@
-package org.insilico.krayon4insilico.services;
+package org.insilico.krayon4insilico.services.provider;
 
 import static org.eclipse.fx.code.editor.Constants.DOCUMENT_URL;
 
@@ -41,6 +41,10 @@ public class SbgnDocumentLoader extends ContextFunction {
     @Override
     public Object compute(IEclipseContext context, String contextKey) {
         System.out.println("Compute...");
+        System.out.println(context.toString());
+        System.out.println(context);
+        System.out.println(context.get(DOCUMENT_URL));
+        
         Object urlVal = context.get(DOCUMENT_URL);
 
         if (urlVal == null) {
