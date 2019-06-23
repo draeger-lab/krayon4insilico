@@ -5,12 +5,12 @@ Said plugin should offer the user the full functionality of the drawing tool [kr
 
 ## project history
 
-In the first two months of working time several problems with setting up insilico and and krayon4sbgn had to be fixed. Some of them like compiling krayon4sgbn using the eclipse IDE and building insilico using Maven under windows still haven't been fixed. A meeting with [Roland Wiese](https://github.com/wiese42) brought up the current approach that is editing krayon4sbgn using IntelliJ and developing the plugin importing classes from the krayon4sbgn.jar file in the build path.
-A modified version of the krayon4sbgn project that can be used as a resource for this project can be found [here](https://github.com/draeger-lab/krayon4sbgn).
-Even though the beginning of coding was delayed by unforeseen problems there had already been learn-effects regarding setting up the java and kotlin compiler and build path and working with eclipse and IntelliJ as well as working with software with commercial licence and obfuscation. Shortly after that a working JavaFX Appliction making most features of krayon4insilico  available was finished. This state of work is located on the master branch.
+In the first two months of working time several problems with setting up insilico and and krayon4sbgn had to be fixed. Some of them like compiling krayon4sgbn using the eclipse IDE and building insilico using Maven under windows still haven't been fixed. A meeting with [Roland Wiese](https://github.com/wiese42) brought up the current approach that is editing krayon4sbgn using IntelliJ and developing the plugin importing classes from the krayon4sbgn.jar file in the build path.  
+A modified version of the krayon4sbgn project that can be used as a resource for this project can be found [here](https://github.com/draeger-lab/krayon4sbgn).  
+Even though the beginning of coding was delayed by unforeseen problems there had already been learn-effects regarding setting up the java and kotlin compiler and build path and working with eclipse and IntelliJ as well as working with software with commercial licence and obfuscation. Shortly after that a working JavaFX Appliction making most features of krayon4insilico  available was finished. This state of work is located on the master branch.  
 Up to this point Drag and Drop which is central for krayon4sbgn functionality does not work inside a javaFX swingNode. It was decided to keep this issue open and continue working on plugin development.
 In the following weeks problems with insilicos maven build occured leading to a bug fix for insilicos maven build under Windows.
-In the last weeks of working time the current state of the project with the final plugin structures consisting of a bundle the corresponding feature and osgi-services were finished.
+In the last weeks of working time the current state of the project with the final plugin structures consisting of a bundle the corresponding feature and osgi-services were finished.  
 The plugin still contains several bugs. For this see [Issues](https://github.com/draeger-lab/krayon4insilico/issues) and next steps.
 
 ## Next steps
