@@ -14,10 +14,15 @@ In the last weeks of working time the current state of the project with the fina
 The plugin still contains several bugs. For this see [Issues](https://github.com/draeger-lab/krayon4insilico/issues) and next steps.
 
 ## Next steps
-
+This project will be turned over to another developer so hera are a couple of instructions:
+At first this project should be installed and built and then debugged to work inside insilico displaying sbgn files. Right now there are still problems with obtaining a document url from the context for sbgn files.   Once this is fixed the plugin should be further optimized. The first and most important step will be to replace the swing GUI of [krayon4sbgn](https://github.com/draeger-lab/krayon4sbgn) with a GUI definition based on JavaFX to enable drag and drop and get rid of the unwanted GUI behavior caused by using swingNodes to display Krayon4sbgn in JavaFX.  
+After that the new developer is free to optimize the krayon4sbgn menu and functionality to match insilico and to work on interaction with other plugins.
 
 ## Building the project
-Start by installing [insilico](https://github.com/draeger-lab/insilico) so it can be started in eclipse. replace git files and README.md with the corresponding files from this project and add the krayon4insilico bundle und feature to insilicos bundles and features. The easiest way to do this is to copy the content of your insilico project to this project.
+Start by installing [insilico](https://github.com/draeger-lab/insilico) so it can be started in eclipse (follow instructions in README.md).  Clone this project and checkout plugin-dev then replace git files and README.md of insilico with the corresponding files from this project and add the krayon4insilico bundle und feature to insilicos bundles and features. The easiest way to do this is to copy the content of your insilico project to this project.   
+In org.insilico.product add krayon4insilico.feature to contents.
+For debugging also add "-console" to Launching Programm Arguments.
+For this plugin to work properly krayon4sbgn.jar has to be located in /bundles/org.insilico.krayon4insilico/res.
 
 ## Authors
 [Anton Rabe](https://github.com/AntonJuliusRabe)
